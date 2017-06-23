@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from flask import Flask, render_template
 from intercom.client import Client
 intercom = Client(personal_access_token='dG9rOmQ2ODUwOTE0XzdiMmVfNGYyMF84NzMwXzJiMDZjZjFhM2Q5YToxOjA=')
