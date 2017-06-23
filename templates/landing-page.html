@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Intercom Test Page</title>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+  <h1>Intercom Test Page</h1>
+  <button class="basic-button" id="btn-end-session" onclick="sessionEnd()">End session</button>
+
+  <script>
+    // Add the Surfly snippet -->
+    (function(s,u,r,f,l,y){s[f]=s[f]||{init:function(){s[f].q=arguments}};
+    l=u.createElement(r);y=u.getElementsByTagName(r)[0];l.async=1;
+    l.src='https://surfly.com/surfly.js';y.parentNode.insertBefore(l,y);})
+    (window,document,'script','Surfly');
+
+    // Implement the Surfly init code, ADD YOUR OWN WIDGET KEY
+    Surfly.init({widget_key:'0c17c102b943457a82838fe64a5a0a0d'}, function(init) {
+      if (init.success) {
+        if (Surfly.isInsideSession) {
+          // Inside the session, display the btn-end-session
+          document.getElementById('btn-end-session').style.display = "block";
+        } else {
+          // Add your chat box snippet code here
+          var APP_ID = "ugtxg54h";
+
+          (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;
+          s.src='https://widget.intercom.io/widget/' + APP_ID;
+          var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()
+
+          window.Intercom('boot', {
+             app_id: APP_ID,
+             //"config.inbox.style"
+            //Logged out user so may not have any user related info
+          });
+        }
+      }
+    });
+
+    function sessionStart() {
+      var settings = {
+        block_until_agent_joins: false,
+        hide_until_agent_joins: true,
+        start_docked: true,
+        cookie_transfer_enabled: true,
+        cookie_transfer_proxying: false,
+        splash: false
+      };
+      Surfly.session(settings).startLeader();
+    }
+    // Function that ends the session, so that it can be applied to the "end Session"-button
+    function sessionEnd() {
+      Surfly.currentSession.end();
+    }
+  </script>
+</body>
+</html>
