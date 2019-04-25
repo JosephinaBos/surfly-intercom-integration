@@ -17,7 +17,7 @@
     (window,document,'script','Surfly');
 
     // Implement the Surfly init code, ADD YOUR OWN WIDGET KEY
-    Surfly.init({widget_key:'0c17c102b943457a82838fe64a5a0a0d'}, function(init) {
+    Surfly.init({widget_key:'24f023888ca9419484b74f10eca984b2'}, function(init) {
       if (init.success) {
         if (Surfly.isInsideSession) {
           // Inside the session, display the btn-end-session
@@ -27,20 +27,6 @@
         }
     });
 
-    if(!window.__surfly){
-
-      //Add your chat box snippet code (for this example I have used Olark)
-        var APP_ID = "ugtxg54h";
-
-        (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;
-          s.src='https://widget.intercom.io/widget/' + APP_ID;
-          var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()
-
-        window.Intercom('boot', {
-            app_id: APP_ID,
-        });
-    }
-
 
     function sessionStart() {
       var settings = {
@@ -49,6 +35,7 @@
         start_docked: true,
         cookie_transfer_enabled: true,
         cookie_transfer_proxying: false,
+        chat_integration: "intercom",
         splash: false
       };
       Surfly.session(settings).startLeader();
@@ -58,5 +45,11 @@
       Surfly.currentSession.end();
     }
   </script>
+  <script>
+  window.intercomSettings = {
+    app_id: "34243f4a3eeaeec18e497f2ab9d722b6fcd5957b"
+  };
+</script>
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/34243f4a3eeaeec18e497f2ab9d722b6fcd5957b';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
 </body>
 </html>
